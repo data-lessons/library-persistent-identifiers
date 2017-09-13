@@ -1,17 +1,28 @@
-# Working with Persistent Identifiers - Hands-on
+---
+title: "Working with Persistent Identifiers - B2HANDLE"
+teaching: 0
+exercises: 0
+questions:
+- "Key question"
+objectives:
+- "First objective."
+keypoints:
+- "First key point."
+---
+
 This lecture illustrates the use of PIDs, more specifically it shows how to employ [handles](handle.net) using the [B2HANDLE library](https://github.com/EUDAT-B2SAFE/B2HANDLE).
 
 ## Prerequisites
 If you are not working on one of our test machines you need to install the B2HANDLE library and apply for a prefix. For instructions please follow the documentation:
 
-https://github.com/EUDAT-B2SAFE/B2HANDLE/blob/master/README.md
+,<https://github.com/EUDAT-B2SAFE/B2HANDLE/blob/master/README.md>
 
-http://eudat-b2safe.github.io/B2HANDLE/handleclient.html#authentication
+<http://eudat-b2safe.github.io/B2HANDLE/handleclient.html#authentication>
 
 ## Warming-up: Using PIDs
 Below  you find three different PIDs and their corresponding global resolver
 
-- Handle 
+- Handle
 
     PID: 11304/cf8956a2-39d3-11e5-8a18-f31aa6f4d448
 
@@ -23,7 +34,7 @@ Below  you find three different PIDs and their corresponding global resolver
 
     Resolver: http://dx.doi.org/
 
-- Ark 
+- Ark
 
     PID: ark:/13030/tf5p30086k
 
@@ -41,12 +52,12 @@ Each PID consists of a *prefix* which is linked to an administratory domain (e.g
 ## Managing PIDs
 
 #### Training machine
-On our user interface machines we already installed all necessary packages and the B2HANDLE library. You will find your credentaials for this tutorials in the folder */home/<user>/credentials/cred_b2handle*. 
+On our user interface machines we already installed all necessary packages and the B2HANDLE library. You will find your credentaials for this tutorials in the folder */home/<user>/credentials/cred_b2handle*.
 
 #### Own laptop
 In case you are working on your own laptop with your own python, please install the B2HANDLE library.
 
-## Managing PIDs 
+## Managing PIDs
 How do repositories create PIDs for data objects?
 How can you create a PID for your own data objects?
 
@@ -71,7 +82,7 @@ import uuid
 import hashlib
 import os, shutil
 ```
-### Connect to the SURFsara handle server 
+### Connect to the SURFsara handle server
 To connect to the epic server you need to provide a prefix, the private key and the certificate; alternatively the library also provides authentication with username/password. This information is stored in a json file *cred_file.json* and should look like this:
 ```sh
 {
@@ -103,7 +114,7 @@ ec = EUDATHandleClient.instantiate_with_credentials(cred)
 ```
 
 ## Registering a file
-### We will register a public file from figshare. 
+### We will register a public file from figshare.
 First store the file location.
 ```py
 fileLocation = 'https://ndownloader.figshare.com/files/2292172'
@@ -127,7 +138,7 @@ print(pid)
 
 We now have an opaque string which is unique to our resolver since
 the prefix is unique (handed out by administrators of the resolver).
-The suffix has been created with the uuid function. 
+The suffix has been created with the uuid function.
 
 - Link the PID and the data object. We would like the PID to point to the location we stored in *fileLocation*
 
@@ -136,7 +147,7 @@ Handle = ec.register_handle(pid, fileLocation)
 ```
 
 Let’s go to the resolver and see what is stored there
-`http://epic3.storage.surfsara.nl:8001`. 
+`http://epic3.storage.surfsara.nl:8001`.
 We can get some information on the data from the resolver.
 We can retrieve the data object itself via the web-browser.
 
@@ -162,8 +173,8 @@ args = dict([('TYPE', 'file')])
 ec.modify_handle_value(Handle, ttl=None, add_if_not_exist=True, **args)
 ```
 
-- We want to store information on identity of the file, e.g. the md5 checksum. We first have 
-to generate the checksum. However, we can only create checksums for files which we 
+- We want to store information on identity of the file, e.g. the md5 checksum. We first have
+to generate the checksum. However, we can only create checksums for files which we
 have access to with our python compiler. In the step above we can download the file and
 then continue to calculate the checksum. **NOTE** the filename might depend on the download method.
 
@@ -231,14 +242,14 @@ We can fetch the first data with a certain checksum:
 args = dict([('CHECKSUM', str(''.join(md5sum)))])
 Handle = ec.search_handle(**args)
 url = ec.get_value_from_handle(Handle, 'URL')
-print(url) 
+print(url)
 ```
 
 ### Using the epicclient Command Line Interface (CLI)
-For now we directly worked with the library. EUDAT provides an [epicclient](https://github.com/EUDAT-B2SAFE/B2SAFE-core/blob/master/cmd/epicclient2.py) which can be used as command line interface (CLI) based on the B2HANDLE. 
+For now we directly worked with the library. EUDAT provides an [epicclient](https://github.com/EUDAT-B2SAFE/B2SAFE-core/blob/master/cmd/epicclient2.py) which can be used as command line interface (CLI) based on the B2HANDLE.
 You can list all options for the CLI on the commandline with:
 
-```sh 
+```sh
 python epicclient2.py os <full path>/cred_file.json -h
 ```
 

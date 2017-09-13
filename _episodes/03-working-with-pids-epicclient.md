@@ -1,10 +1,21 @@
-# Working with Persistent Identifiers - Hands-on
+---
+title: "Working with Persistent Identifiers - EPIC API"
+teaching: 0
+exercises: 0
+questions:
+- "Key question"
+objectives:
+- "First objective."
+keypoints:
+- "First key point."
+---
+
 This lecture illustrates the use of PIDs, more specifically it shows how to employ [handles](handle.net) using the epicclient and [EPIC API](http://www.pidconsortium.eu/).
 
 ## Warming-up: Using PIDs
 Below  you find three different PIDs and their corresponding global resolver
 
-- Handle 
+- Handle
 
     PID: 11304/cf8956a2-39d3-11e5-8a18-f31aa6f4d448
 
@@ -16,7 +27,7 @@ Below  you find three different PIDs and their corresponding global resolver
 
     Resolver: http://dx.doi.org/
 
-- Ark 
+- Ark
 
     PID: ark:/13030/tf5p30086k
 
@@ -70,7 +81,7 @@ Final check
 python epicclient.py --help
 ```
 
-## Managing PIDs 
+## Managing PIDs
 How do repositories create PIDs for data objects?
 How can you create a PID for your own data objects?
 
@@ -93,7 +104,7 @@ import uuid
 import hashlib
 import os, shutil
 ```
-### Connect to the SURFsara handle server 
+### Connect to the SURFsara handle server
 To connect to the epic server you need to provide a prefix and a password. This information is stored in a json file *credentials* and should look like this:
 ```sh
 {
@@ -123,7 +134,7 @@ print('PID prefix ' + ec.cred.prefix)
 ```
 
 ## Registering a file
-### We will register a public file from figshare. 
+### We will register a public file from figshare.
 First store the file location.
 ```py
 fileLocation = 'https://ndownloader.figshare.com/files/2292172'
@@ -147,7 +158,7 @@ print(pid)
 
 We now have an opaque string which is unique to our resolver since
 the prefix is unique (handed out by administrators of the resolver).
-The suffix has been created with the uuid function. 
+The suffix has been created with the uuid function.
 
 - Link the PID and the data object. We would like the PID to point to the location we stored in *fileLocation*
 
@@ -156,7 +167,7 @@ Handle = ec.createHandle(pid, fileLocation)
 ```
 
 Let’s go to the resolver and see what is stored there
-`http://epic3.storage.surfsara.nl:8001`. 
+`http://epic3.storage.surfsara.nl:8001`.
 We can get some information on the data from the resolver.
 We can retrieve the data object itself via the web-browser.
 
@@ -178,8 +189,8 @@ newHandle = ec.createHandle(pid, fileLocation)
 ec.modifyHandle(Handle, 'TYPE', 'Data Carpentry pandas example file')
 ```
 
-- We want to store information on identity of the file, e.g. the md5 checksum. We first have 
-to generate the checksum. However, we can only create checksums for files which we 
+- We want to store information on identity of the file, e.g. the md5 checksum. We first have
+to generate the checksum. However, we can only create checksums for files which we
 have access to with our python compiler. In the step above we can download the file and
 then continue to calculate the checksum. **NOTE** the filename might depend on the download method.
 
@@ -245,14 +256,14 @@ We can fetch the first data with a certain checksum:
 ```py
 Handle = ec.searchHandle(cred.prefix, 'MD5', md5sum)
 url = ec.getValueFromHandle(Handle, 'URL')
-print(url) 
+print(url)
 ```
 
 ### Using the epicclient Command Line Interface (CLI)
-For now we directly worked with the raw functions. The epicclient can also be used as CLI. 
+For now we directly worked with the raw functions. The epicclient can also be used as CLI.
 You can list all options for the CLI on the commandline with:
 
-```sh 
+```sh
 /opt/epd73/bin/python epicclient.py os /opt/PIDs/credentials -h
 ```
 
