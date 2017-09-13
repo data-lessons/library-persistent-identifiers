@@ -1,5 +1,5 @@
 # librarycarpentry
-##Materials for Library Carpentry development
+## Materials for Library Carpentry development
 
 These materials are based on the **Library Carpentry** materials initially developed and taught by [Dr James Baker](https://github.com/drjwbaker) and [Owen Stephens](https://github.com/ostephens) in the UK.
 [http://librarycarpentry.github.io/outline/](http://librarycarpentry.github.io/outline/). The original Library Carpentry contained four modules:
@@ -16,18 +16,18 @@ These existing four repositories have been forked (links are below) and are bein
 - [library-openrefine](https://github.com/data-lessons/library-openrefine)
 - [library-sql](https://github.com/data-lessons/library-sql)
 
-##The Sprint
+## The Sprint
  The aim of the sprint project is to extend Library Carpentry by 
  - adding new exercises to challenge participants
  - adding new multiple choice questions to test understanding
  - adding an SQL module
  - adding new databases, e.g. from digital humanities or elsewhere, so that the material can be used in training beyond the library community. 
 
-##Participants
+## Participants
 Anyone with an interest in the material is welcome to take part in the sprint. The project is being co-ordinated for the sprint by [Belinda Weaver](https://github.com/weaverbel) in Brisbane, who is hosting [a local site for participants](http://pad.software-carpentry.org/bris-sprint). People are welcome to sign on to the project there.
 
-##Code of Conduct
+## Code of Conduct
 All participants should agree to abide by the [Software Carpentry Code of Conduct](http://software-carpentry.org/conduct/).
 
-##License
+## License
 All the lessons are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). **Exceptions: embeds to and from external sources, and direct quotations from speakers.**
